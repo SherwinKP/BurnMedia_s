@@ -781,7 +781,7 @@ namespace BurnMedia
                 fileSystemImage = new MsftFileSystemImage();
                 fileSystemImage.ChooseImageDefaults(discRecorder);
                 fileSystemImage.FileSystemsToCreate =
-                    FsiFileSystems.FsiFileSystemJoliet | FsiFileSystems.FsiFileSystemISO9660;
+                    FsiFileSystems.FsiFileSystemJoliet | FsiFileSystems.FsiFileSystemISO9660 | FsiFileSystems.FsiFileSystemUDF;
                 fileSystemImage.VolumeName = textBoxLabel.Text;
 
                 fileSystemImage.Update += fileSystemImage_Update;
@@ -831,8 +831,10 @@ namespace BurnMedia
                 }
 
                 dataStream = fileSystemImage.CreateResultImage().ImageStream;
+               
             }
-            catch (COMException exception)
+           
+            catch (Exception exception)
             {
                 MessageBox.Show(this, exception.Message, "Create File System Error", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
